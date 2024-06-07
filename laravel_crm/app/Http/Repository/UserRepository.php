@@ -13,6 +13,12 @@ class UserRepository extends BaseRepository
     
     public function getUser(){
         $instance = $this->getModelInstance(User::class);
-        return $instance->orderBy('name', 'asc')->get();
+        return $instance->orderBy('email', 'asc')->first();
     }
+
+    public function get($id):?User{
+        $instance = $this->getModelInstance(User::class);
+        return $instance->where('id', $id)->first();
+    }
+  
 }

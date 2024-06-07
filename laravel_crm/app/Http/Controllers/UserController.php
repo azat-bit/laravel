@@ -2,8 +2,10 @@
 
 
 namespace App\Http\Controllers;
+
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Service\UserService;
 use Illuminate\Http\Request;
 
@@ -18,21 +20,23 @@ class UserController extends Controller
     }
     public function index()
     {
-        $listUser= $this->userService->getUser();
+       
         return view("user.index");
     }
-    public function login(LoginRequest $request){
-        $data = [
-            "email" => $request->input("email"),
-            "password" => $request->input("password"),
-        ];
-        dd($data);
-        if(Auth::attempt($data)){ 
+    public function login(LoginRequest $request)
+    {
+
+        $email = $request->input("email");
+        $password = $request->input("password");
+
+        $listUser = $this->userService->getUser();
+        if ($listUser && Hash::check($password, $listUser->password)) {
+            Auth::login($listUser);
             return "Giriş başarılı!";
         }
         return "Giriş başarısız!";
     }
-    
+
 
 
 }

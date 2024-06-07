@@ -8,7 +8,7 @@ body {
 .container {
     width: 400px;
     margin: 50px auto;
-    background-color: #631616;
+    background-color: #b32525;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -43,7 +43,7 @@ input {
 
 button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #2a76c7;
     color: #a61a1a;
     border: none;
     border-radius: 5px;
@@ -52,6 +52,6 @@ button {
 
 a {
     text-decoration: none;
-    color: #007bff;
+    color: #da530a;
     margin-top: 10px;
 }

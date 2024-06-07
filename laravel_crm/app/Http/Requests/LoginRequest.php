@@ -32,7 +32,7 @@ class LoginRequest extends FormRequest
 
     public function messages(){
         return [
-            'email.exists' => 'bilgi yok',
+            'email.exists' => 'kullanıcı bilgileri yok',
         ] ;
     }
 }

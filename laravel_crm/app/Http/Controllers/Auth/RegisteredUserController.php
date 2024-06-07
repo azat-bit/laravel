@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Http\Service\UserService;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -13,14 +14,17 @@ use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
 {
+    protected $userService;
+    public function __construct(UserService $userService){
+        $this->userService = $userService;
+    }
     /**
      * Display the registration view.
      *
      * @return \Illuminate\View\View
      */
-    public function create()
-    {
-        return view('auth.register');
+    public function create(){
+        return view('user.new-user');
     }
 
     /**
@@ -33,11 +37,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+       
 
         $user = User::create([
             'name' => $request->name,

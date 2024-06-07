@@ -20,6 +20,12 @@ class BaseRepository
     {
         return $this->model->create($attributes);
     }
+    public function storeEntity($model,$data){
+        $instance = $this->getModelInstance($model);
+        $instance->fill($data);
+        $instance->save();
+        return $instance;
+    }
 
     public function update($id, array $attributes)
     {
